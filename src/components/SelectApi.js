@@ -24,10 +24,10 @@ class Select extends Component {
   }
 
   render() {
-    const { value, onChange } = this.props;
+    const { value, onChange, classL } = this.props;
     const { currency } = this.state;
     return (
-      <label htmlFor="currency">
+      <label className={ classL } htmlFor="currency">
         Moeda
         <select value={ value } name="currency" id="currency" onChange={ onChange }>
           { currency.map((coin) => (
@@ -46,6 +46,7 @@ class Select extends Component {
 Select.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  classL: PropTypes.string.isRequired,
 };
 
 export default Select;

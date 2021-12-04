@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable max-lines-per-function */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,6 +10,7 @@ import SelectTag from '../components/SelectTag';
 import Button from '../components/Button';
 import { fetchCurrent } from '../actions';
 import Table from '../components/Table';
+import goldCoin from '../goldCoin.png';
 
 class Wallet extends Component {
   constructor(props) {
@@ -54,15 +57,22 @@ class Wallet extends Component {
       currenciesKeys, value, description, currency, method, tag } = this.state;
     return (
       <>
-        <header>
-          <h3 data-testid="email-field">{ emailState }</h3>
-          <h3 data-testid="total-field" label="Valor">{this.sum()}</h3>
-          <h3 data-testid="header-currency-field">BRL</h3>
+        <header className="wallet-header">
+          <h3
+            className="header-item-email"
+            data-testid="email-field"
+          >
+            { `E-mail: ${emailState}` }
+          </h3>
+          <h3 className="header-item-value" data-testid="total-field" label="Valor">{`R$ ${this.sum()}`}</h3>
+          <h3 className="header-item-currency" data-testid="header-currency-field">BRL</h3>
+          <img className="header-coin" src={ goldCoin } alt="coin" />
         </header>
-        <form>
+        <form className="form-wallet">
           <Input
             type="number"
             onChange={ this.handleInputs }
+            classL="input-item-label"
             value={ value }
             label="Valor"
             name="value"
@@ -70,21 +80,25 @@ class Wallet extends Component {
           <Input
             type="text"
             onChange={ this.handleInputs }
+            classL="input-item-label"
             value={ description }
             label="Descrição"
             name="description"
           />
           <SelectApi
             onChange={ this.handleInputs }
+            classL="input-item-label"
             value={ currency }
             endpoint={ currenciesKeys }
           />
           <SelectPayment
             value={ method }
+            classL="input-item-label"
             onChange={ this.handleInputs }
           />
           <SelectTag
             value={ tag }
+            classL="input-item-label"
             onChange={ this.handleInputs }
           />
           <Button onClick={ this.submitState } itemName="Adicionar despesa" />

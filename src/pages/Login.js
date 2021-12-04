@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { user } from '../actions';
+import '../index.css';
+import goldCoin from '../goldCoin.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -50,30 +52,44 @@ class Login extends React.Component {
 
   render() {
     const { email, password, disabled } = this.state;
+    const classN = 'btn-login';
     return (
-      <form>
-        <Input
-          type="text"
-          name="email"
-          label="Insira o seu e-mail: "
-          testId="email-input"
-          value={ email }
-          onChange={ this.handleInput }
-        />
-        <Input
-          type="password"
-          name="password"
-          label="Insira a sua senha: "
-          value={ password }
-          testId="password-input"
-          onChange={ this.handleInput }
-        />
-        <Button
-          itemName="Entrar"
-          onClick={ this.submitForm }
-          disabled={ disabled }
-        />
-      </form>
+      <div className="container">
+        <form className="form-container">
+          <Input
+            type="text"
+            name="email"
+            classN="form-item"
+            classL="label-text"
+            label="Insira o seu e-mail: "
+            testId="email-input"
+            value={ email }
+            onChange={ this.handleInput }
+          />
+          <Input
+            type="password"
+            name="password"
+            classN="form-item"
+            classL="label-text"
+            label="Insira a sua senha: "
+            value={ password }
+            testId="password-input"
+            onChange={ this.handleInput }
+          />
+          <Button
+            itemName="Entrar"
+            classN={ disabled ? classN : 'approved' }
+            onClick={ this.submitForm }
+            disabled={ disabled }
+          />
+        </form>
+        <div className="hero-container">
+          <img className="coin-form" src={ goldCoin } alt="coin" />
+          <h2 className="hero-text">
+            Os seus gastos, em um só lugar!
+          </h2>
+        </div>
+      </div>
     );
   }
 }
